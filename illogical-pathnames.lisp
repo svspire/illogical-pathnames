@@ -211,7 +211,9 @@ This simply tests if A's directory list starts with :ABSOLUTE"
 (defvar *common-lisp-sharp-p*)
 
 (defun |illogical-#P-reader| (stream subchar arg)
-  "Reader for illogical pathnames. Returns an illogical pathname."
+  "Reader for illogical pathnames. Returns an illogical pathname." ;;; wrong. it returns a physical pathname. See the FAQ.
+                                                                   ;;; This means if you want to preserve an illogical pathname
+                                                                   ;;;  in a database somewhere, you can't specify it with #P.
   (declare (ignore subchar arg))
   (let* ((*read-eval* nil)
          (specifier (read stream t)))
